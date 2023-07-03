@@ -1,1 +1,35 @@
-<h1>PRUEBA</h1>
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block header %}
+    <header class="bg-primary bg-gradient text-white" style="min-height: 25vh">
+        <div class="container px-1 text-center">
+            <h1 class="fw-bolder display-3 py-5">{% block title %}Hotel El Jardin Secreto{% endblock title %}</h1>
+        </div>
+    </header>
+{% endblock header %}
+    
+{% block content %}
+    {% if user.is_authenticated %}
+        <h3 class="d-flex align-items-center">Bienvenido {{ user.username }}
+            {% if user.perfil.avatar %}
+                <img src="{{ user.perfil.avatar.url }}" alt="Avatar" style="height: 30px; width: 30px; border-radius: 50%; object-fit: cover"/> 
+            {% else %}
+                <img src="{% static 'img/home/user.png' %}" alt="Avatar" style="height: 30px; width: 30px; border-radius: 50%; object-fit: cover"/>
+            {% endif %}  
+        </h3>
+    {% endif %}
+
+    {% include 'messages.html' %}
+
+    {% if user.is_staff %}
+        <div class="d-grid gap-3 mt-3 mb-5">
+            <a href="{% url 'admin:index' %}" class="btn btn-outline-dark">Administración</a>
+       
+            <a href="{% url 'home:register' %}" class="btn btn-outline-dark">Registrar miembro del staff</a>
+        </div>
+    {% endif %}
+
+    <h2 class="display-5 mb-4">Home</h2>
+    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
+{% endblock content %}

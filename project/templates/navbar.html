@@ -1,0 +1,49 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5">
+    <div class="container-fluid p-1">
+        <a class="navbar-brand" href="{% url 'home:index' %}">El Jardin Secreto</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home:index' %}">Home</a>
+                </li>
+            
+                {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-info" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ user.username }}
+                            {% if user.perfil.avatar %}
+                                <img src="{{ user.perfil.avatar.url }}" class="icono-avatar" alt="Avatar" style="width:30px;">
+                            {% else %}
+                                <img src="{% static 'img/home/user.png' %}" class="icono-avatar" alt="avatar" style="width:30px;">
+                            {% endif %}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                            {% if not user.perfil %}
+                                <li><a class="dropdown-item" href="{% url 'home:perfil_create' %}">Cargar Perfil</a></li>
+                            {% else %}
+                                <li><a class="dropdown-item" href="{% url 'home:perfil_detail' user.perfil.pk %}">Ver Perfil</a></li>
+                                <li><a class="dropdown-item" href="{% url 'home:perfil_update' user.perfil.pk %}">Actualizar Perfil</a></li>
+                                <li><a class="dropdown-item" href="{% url 'home:perfil_delete' user.perfil.pk %}">Eliminar Perfil</a></li>
+
+                            {% endif %}
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="{% url 'home:logout' %}">Logout</a></li>
+                      </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/accounts/login/' %}active{% endif %}" href="{% url 'home:login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/accounts/register/' %}active{% endif %}" href="{% url 'home:register' %}">Register</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
