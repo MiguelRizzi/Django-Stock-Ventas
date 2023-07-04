@@ -1,0 +1,43 @@
+{% extends 'productos/list.html' %}
+
+{% block title_2 %}Lista de tipo de Productos{% endblock %}
+{% block search %}
+    <!-- Sirve para buscar tipos de producto. Se pasa a la variable consulta de la vista. -->
+    <div class="py-lg-4">
+        <form action="{% url 'productos:productocategoria_list' %}" method="get">
+            <input name="consulta" type="text" placeholder="Buscar...">
+        </form>
+    </div>
+{% endblock search %}
+       
+{% block table_header %}
+    <tr>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+        <th></th>
+        {% if user.is_staff %}
+            <th></th>
+            <th></th>
+        {% endif %}
+    </tr>
+{% endblock table_header %}
+     
+{% block table_body %}
+    {% for producto_categoria in object_list %}
+        <tr>
+            <td>{{ producto_categoria.nombre }}</td>
+            <td>{{ producto_categoria.descripcion|truncatechars:10 }}</td>
+            <td>
+                <a href="{% url 'productos:productocategoria_detail' producto_categoria.id %}" class="btn btn-primary">Detalle</a>
+            </td>
+            {% if user.is_staff %} 
+                <td>
+                    <a href="{% url 'productos:productocategoria_update' producto_categoria.id %}" class="btn btn-success">Actualizar</a>
+                </td>
+                <td>
+                    <a href="{% url 'productos:productocategoria_delete' producto_categoria.id %}" class="btn btn-danger">Eliminar</a>
+                </td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+{% endblock table_body %}

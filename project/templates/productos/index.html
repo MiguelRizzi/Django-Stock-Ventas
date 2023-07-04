@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block header %}
+    {% block title %}
+        <h1 class="fw-bolder display-2 text-white p-5 h1-header">El Jardin Secreto </h1>
+    {% endblock %}
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-lg-3">
+        
+      
+      
+            <h2 class="fw-bolder display-5 my-4">Tipo de Productos</h3>
+            <div class="d-grid gap-3">
+                <a href="{% url 'productos:productocategoria_create' %}" class="btn btn-primary">Crear tipo de Producto</a>
+                <a href="{% url 'productos:productocategoria_list' %}" class="btn btn-primary">Ver tipo de Productos</a> <br>
+            </div>
+                
+            <h2 class="fw-bolder display-5 mb-4">Productos</h3>
+            <div class="d-grid gap-3">
+                <a href="" class="btn btn-primary">Crear Producto</a>
+                <a href="" class="btn btn-primary">Ver Productos</a> <br>
+            </div>
+                    
+        
+        {% url 'home:index' as url %}
+        {% include 'index_back.html' with link=url %}
+    </div>
+{% endblock content %}
+    
+    
