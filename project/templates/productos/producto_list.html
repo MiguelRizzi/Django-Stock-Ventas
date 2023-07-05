@@ -1,0 +1,52 @@
+{% extends 'productos/list.html' %}
+
+{% block title_2 %}Lista de Productos{% endblock %}
+
+{% block search %}
+    <!-- Sirve para buscar productos. Se pasa a la variable consulta de la vista. -->
+    <div class="py-lg-4">
+        <form action="{% url 'productos:producto_list' %}" method="get">
+            <input name="consulta" type="text" placeholder="Buscar por numero...">
+        </form>
+    </div>
+{% endblock search %}
+
+{% block table_header %}
+    <tr>
+        <th>Nombre</th>
+        <th>Categoria</th>
+        <th>Stock</th>
+        <th>Precio Costo</th>
+        <th>Precio Venta</th>
+        <th></th>
+        {% if user.is_staff %}
+            <th></th>
+            <th></th>
+        {% endif %}
+    </tr>
+{% endblock table_header %}
+     
+{% block table_body %}
+    {% for producto in object_list %}
+        <tr>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.categoria }}</td>
+            <td>{{ producto.stock }}</td>
+            <td>{{ producto.moneda }} {{ producto.precio_costo }}</td>
+            <td>{{ producto.moneda }} {{ producto.precio_venta }}</td>
+    
+            <td>
+                <a href="{% url 'productos:producto_detail' producto.id %}" class="btn btn-primary">Detalle</a>
+            </td>
+            {% if user.is_staff %} 
+                <td>
+                    <a href="{% url 'productos:producto_update' producto.id %}" class="btn btn-success">Actualizar</a>
+                </td>
+                <td>
+                    <a href="{% url 'productos:producto_delete' producto.id %}" class="btn btn-danger">Eliminar</a>
+                </td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+
+{% endblock table_body %}

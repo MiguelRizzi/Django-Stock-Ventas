@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h2 class="fw-bolder display-5 mb-4">Detalle de {{object.nombre}}</h2>
+    
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Nombre:</strong> {{ object.nombre }}</li>
+        <li class="list-group-item"><strong>Categoria:</strong> {{ object.categoria }}</li>
+        <li class="list-group-item"><strong>Stock</strong> ${{ object.stock }}</li>
+        <li class="list-group-item"><strong>Moneda:</strong> {{ object.moneda }}</li>
+        <li class="list-group-item"><strong>Precio de Costo:</strong> {{ object.precio_costo }}</li>
+        <li class="list-group-item"><strong>Precio de Venta:</strong> {{ object.precio_venta }}</li>
+        <li class="list-group-item"><strong>Descripción:</strong> {{ object.descripcion }}</li>
+        <li class="list-group-item"><strong>Fecha de Acualización:</strong> {{ object.fecha_actualizacion }}</li>
+        {% if object.imagen %}
+            <li class="list-group-item"><strong>Imagen:</strong><br>
+                <img src="{{ object.imagen.url }}" alt="Avatar" class="mt-3 imagen imagen-habitacion">
+            </li>
+        {% else %}
+            <li class="list-group-item"><strong>Imagen:</strong> No disponible.</li>
+        {% endif %}
+    </ul>
+    
+    {% url 'productos:index' as url %}
+    {% include 'index_back.html' with link=url %}
+   
+{% endblock content %}
+

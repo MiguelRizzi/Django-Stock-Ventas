@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <h2 class="fw-bolder display-5 mb-4">¿Confirmas eliminar "{{ object }}"?</h2>
+    <h2 class="fw-bolder display-5 mb-4">¿Confirmas eliminar "{{ object.nombre }}"?</h2>
 
     <form method="post">
         {% csrf_token %}

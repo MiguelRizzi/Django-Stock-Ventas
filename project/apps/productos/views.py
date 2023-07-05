@@ -68,6 +68,7 @@ class ProductoDetail(DetailView):
 class ProductoDelete(DeleteView):
     model = models.Producto
     success_url = reverse_lazy("productos:producto_list")
+    template_name = "productos/confirm_delete.html"
 
 
 class ProductoUpdate(UpdateView):

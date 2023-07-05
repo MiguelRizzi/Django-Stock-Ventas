@@ -3,7 +3,7 @@
 
 {% block header %}
     {% block title %}
-        <h1 class="fw-bolder display-2 text-white p-5 h1-header">El Jardin Secreto </h1>
+        <h1 class="fw-bolder display-2 text-white p-5 h1-header">Productos</h1>
     {% endblock %}
 {% endblock %}
 
@@ -20,8 +20,8 @@
                 
             <h2 class="fw-bolder display-5 mb-4">Productos</h3>
             <div class="d-grid gap-3">
-                <a href="" class="btn btn-primary">Crear Producto</a>
-                <a href="" class="btn btn-primary">Ver Productos</a> <br>
+                <a href="{% url 'productos:producto_create' %}" class="btn btn-primary">Crear Producto</a>
+                <a href="{% url 'productos:producto_list' %}" class="btn btn-primary">Ver Productos</a> <br>
             </div>
                     
         
