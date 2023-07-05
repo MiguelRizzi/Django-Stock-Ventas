@@ -2,9 +2,11 @@
 {% load static %}
 
 {% block header %}
-    {% block title %}
-        <h1 class="fw-bolder display-2 text-white p-5 h1-header">Productos</h1>
-    {% endblock %}
+    <header class="bg-primary bg-gradient text-white" style="min-height: 25vh">
+        <div class="container px-1 text-center">
+            <h1 class="fw-bolder display-3 py-5">{% block title %}Productos{% endblock title %}</h1>
+        </div>
+    </header>
 {% endblock %}
 
 {% block content %}

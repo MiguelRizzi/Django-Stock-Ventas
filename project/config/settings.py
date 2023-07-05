@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     # Apps propias
     'home.apps.HomeConfig',
     'productos.apps.ProductosConfig',
+    'ventas.apps.VentasConfig',
     # Apps de terceros
     'widget_tweaks',
 ]

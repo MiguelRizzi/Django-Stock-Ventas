@@ -24,9 +24,9 @@
 
     {% if user.is_staff %}
         <div class="d-grid gap-3 mt-3 mb-5">
-            <a href="{% url 'admin:index' %}" class="btn btn-outline-dark">Administración</a>
+            <a href="{% url 'admin:index' %}" class="btn btn-outline-light">Administración</a>
        
-            <a href="{% url 'home:register' %}" class="btn btn-outline-dark">Registrar miembro del staff</a>
+            <a href="{% url 'home:register' %}" class="btn btn-outline-light">Registrar miembro del staff</a>
         </div>
     {% endif %}
 
